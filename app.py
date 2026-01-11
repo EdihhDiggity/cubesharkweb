@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 import os
+from werkzeug.security import  generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-only-key")
@@ -19,6 +20,14 @@ class User(db.Model):
         self.username = username
         self.password = password
 
+
+@app.route("/register")
+def register():
+    if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+
+    return render_template("register.html")
 
 @app.route("/")
 def index():
