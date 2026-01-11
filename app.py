@@ -21,13 +21,33 @@ class User(db.Model):
         self.password = password
 
 
-@app.route("/register")
+@app.route("/register", methods = ['GET', 'POST'])
 def register():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
+        
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash('Username already exists. Choose a different username.')
+            return redirect(url_for('register'))
+        else:
+            new_user = User(
+                username = username,
+                password = generate_password_hash(password)
+            )
+            db.session.add(new_user)
+            db.session.commit()
+            flash("Account created successfully. You can now login.")
+            return redirect(url_for('register'))
 
     return render_template("register.html")
+
+
+@app.route("/login")
+def index():
+    return render_template("login.html")
+
 
 @app.route("/")
 def index():
