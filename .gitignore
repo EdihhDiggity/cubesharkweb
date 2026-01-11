@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Flask instance folder (local databases, configs)
+instance/
+*.db
+
+# Environment variables
+.env
+
+# IDE/editor files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Static files cache (optional, if you regenerate them)
+static/__pycache__/
