@@ -48,7 +48,7 @@ def register():
 def index():
     return render_template("login.html")
 
-
+# comment
 @app.route("/")
 def index():
     return render_template("index.html")
